@@ -16,6 +16,9 @@ pipeline {
     stage('Build') {
       steps {
         bat 'npm run build'
+        bat 'ren dist proyectojenkins'
+        bat 'rd /s /q E:\xamp\htdocs\proyectojenkins'
+        bat 'Xcopy "C:\Users\Jose Cristian\.jenkins\workspace\pipeline\proyectojenkins" E:\xamp\htdocs\proyectojenkins /E /H /C /I'
       }
     }
   }
