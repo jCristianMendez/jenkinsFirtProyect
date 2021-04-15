@@ -1,0 +1,46 @@
+pipeline {
+  agent any
+  stages {
+    stage('Check for vulnerabilities') {
+      steps {
+        bat 'npm audit --parseable --production'
+      }
+    }
+
+    stage('download dependencies') {
+      steps {
+        bat 'npm ci'
+      }
+    }
+
+    stage('Check linting') {
+      steps {
+        bat 'npm run lint'
+      }
+    }
+
+    stage('Check unit:test') {
+      steps {
+        bat 'npm run test:unit -- --ci --coverage'
+      }
+      post {
+        always {
+          junit 'junit.xml'
+          cobertura coberturaReportFile: 'coverage/cobertura-coverage.xml'
+        }
+      }
+    }
+
+    stage('Build') {
+      steps {
+        bat 'npm run build'
+      }
+    }
+
+    stage('Check unit:e2e') {
+      steps {
+        bat 'npm run test:e2e -- --headless --url https://www.trelobifteki.com --config video=false'
+      }
+    }
+  }
+}
