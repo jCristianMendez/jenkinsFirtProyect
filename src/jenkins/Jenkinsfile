@@ -1,21 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('Check for vulnerabilities') {
-      steps {
-        bat 'npm audit --parseable --production'
-      }
-    }
-
     stage('download dependencies') {
       steps {
         bat 'npm ci'
       }
     }
-
-    stage('Check linting') {
+    
+    stage('Check for vulnerabilities') {
       steps {
-        bat 'npm run lint'
+        bat 'npm audit --parseable --production'
       }
     }
 
