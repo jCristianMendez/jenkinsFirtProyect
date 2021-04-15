@@ -36,11 +36,5 @@ pipeline {
         bat 'npm run build'
       }
     }
-
-    stage('Check unit:e2e') {
-      steps {
-        bat 'npm run test:e2e -- --headless --url https://www.trelobifteki.com --config video=false'
-      }
-    }
   }
 }
