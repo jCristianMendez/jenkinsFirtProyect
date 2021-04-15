@@ -3,7 +3,7 @@ module.exports = {
   lintOnSave: false,
   //publicPath cuando se requiera hacer build del proyecto tomara la ruta de /tutorial si se requiere que se llame de otra forma cambiar por el nombre deseado, 
   //la carpeta contenedora tambien debera llamarse asi, la otra ruta sera para el modo en el que estamos actualmente de preferencia dejarla vacia solo con /
-  publicPath: process.env.NODE_ENV === 'production' ? '/jenkins' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/proyectojenkins' : '/',
   transpileDependencies: [
     'vuetify'
   ]
